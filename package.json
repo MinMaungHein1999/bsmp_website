@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "activeadmin_quill_editor": "blocknotes/activeadmin_quill_editor"
+  }
+}
