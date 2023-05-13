@@ -3,10 +3,16 @@ class BookMailer < ApplicationMailer
         @book = book
         @subscriber = subscriber
       
-        attachments.inline['cover_photo.jpg'] = @book.cover_photo.download if @book.cover_photo.attached?
-        attachments.inline['book_file.pdf'] = @book.pdf_file.download if @book.pdf_file.attached?
+        attachments.inline[@book.book_name] = @book.cover_photo.download if @book.cover_photo.attached?
        
-        attachments['book_file.pdf'] = {
+
+        @book.authors.each do |author|
+            attachments.inline[author.profile_name] = author.profile.download if author.profile.attached?
+        end
+
+
+       
+        attachments[@book.pdf_name] = {
             mime_type: 'application/pdf',
             content: @book.pdf_file.download
         }

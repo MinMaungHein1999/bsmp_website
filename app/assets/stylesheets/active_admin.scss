@@ -31,3 +31,19 @@
   width: 200px;
   height: 200px;
 }
+
+/* "Publish" button */
+a.publish_button {
+  background-color: rgb(224, 57, 135);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+/* "Unpublish" button */
+a.unpublish_button {
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}

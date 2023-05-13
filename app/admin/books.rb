@@ -23,6 +23,10 @@ ActiveAdmin.register Book do
     column "Category" do |book|
       book.categories
     end
+
+    column "Authors" do |book|
+      book.authors
+    end
   
     column :Description do |book|
       book.description.body
@@ -36,9 +40,13 @@ ActiveAdmin.register Book do
     end
 
     actions defaults: true do |book|
-      item "Publish", run_admin_book_path(book), method: :get 
+      if book.published_date.nil?
+        item "<i class='fas fa-times'></i> Publish".html_safe, run_admin_book_path(book), method: :get, class: 'publish_button'
+      end
     end
   end
+
+  
 
 
 
@@ -83,5 +91,4 @@ ActiveAdmin.register Book do
     resource.publish_book
     redirect_to collection_path, notice: "Sending emails to each Subscriber!!!"
   end
-  
 end

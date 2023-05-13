@@ -64,16 +64,40 @@
   <div class="container">
     <h1>New Book Publication Notice</h1>
     <div class="img-container">
-      <%= image_tag attachments['cover_photo.jpg'].url, width: 200, height: 200 %>
+      <%= image_tag attachments[@book.book_name].url, width: 200, height: 200 %>
     </div>
     <h2>Title: <%= @book.title %></h2>
-    <p>Authors: <%= @book.get_authors %></p>
-    <p>Categories: <%= @book.get_categories %></p>
+    <p>Category:
+      <ul>
+        <% @book.categories.each do |category| %>
+          <li><%= category.name %></li>
+        <% end %>
+      </ul> 
+    </p>
+
+    <p>Authors:
+      <ul>
+        <% @book.authors.each do |author| %>
+          <li><%= author.name %></li>
+        <% end %>
+      </ul> 
+    </p>
+
+    <p>Author Profiles:
+    <ul>
+      <% @book.authors.each do |author| %>
+        <div class="img-container">
+          <%= image_tag attachments[author.profile_name].url, width: 100, height: 100 %>
+        </div>
+      <% end %>
+    </ul> 
+  </p>
     <p>Publication Date: <%= @book.published_date %></p>
     <hr style="border:none;border-top:1px solid #eee"/>
     <p>Description : <%= @book.description.body %></p>
     <hr style="border:none;border-top:1px solid #eee"/>
-    <%= link_to "Download Now", attachments['book_file.pdf'].url, download: "book_file.pdf", class: "cta-btn" %>
+   
+    <%= link_to "Download Now", attachments[@book.pdf_name].url, download: "book_file.pdf", class: "cta-btn" %>
     <p style="font-size:0.9em;">
       Regards, BSMP Application
     </p>

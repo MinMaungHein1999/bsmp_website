@@ -16,30 +16,24 @@ class Book < ApplicationRecord
         Rails.application.routes.url_helpers.url_for(pdf_file) if pdf_file.attached?
     end
 
-    def get_authors
-        str = ''
-        self.authors.each do |author|
-            str = str + ' | ' + author.name
-        end 
-        return str
+    def book_name 
+        file_type = cover_photo.content_type.split('/').last
+        title.downcase.gsub(" ", "_") + "." + file_type
     end
 
-    def get_categories
-        str = ''
-        self.categories.each do |category|
-            str = str + ' | ' + category.name
-        end 
-        return str
+    def pdf_name 
+        file_type = pdf_file.content_type.split('/').last
+        title.downcase.gsub(" ", "_") + "." + file_type
     end
 
     def publish_book
-       
-        now = Time.now.utc.to_date 
-        self.published_date = now 
-        self.save
-        Subscriber.all.each do |subscriber|
-            SentMailJob.perform_later(self.id,subscriber.id)
+        if published_date.nil?
+            now = Time.now.utc.to_date 
+            self.published_date = now 
+            self.save
+            Subscriber.all.each do |subscriber|
+                SentMailJob.perform_later(self.id,subscriber.id)
+            end
         end
-       
     end
 end

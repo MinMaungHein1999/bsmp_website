@@ -14,6 +14,10 @@ ActiveAdmin.register Author do
     column "Name" do |author|
       link_to author.name, admin_author_path(author.id)
     end
+
+    column "Books" do |author|
+      author.books
+    end
     
     column :email
     column :phone
@@ -78,7 +82,7 @@ ActiveAdmin.register Author do
       f.input :email
       f.input :phone
       f.input :address
-      f.input :profile, as: :file
+      f.input :profile, as: :file, hint: f.object.profile.attached? ? image_tag(f.object.profile.variant(resize: "100x100")) : nil
     end
     f.actions
   end
