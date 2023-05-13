@@ -91,3 +91,5 @@ gem 'active_admin_theme'
 gem 'activeadmin_addons'  
 
 gem 'image_processing', '~> 1.2'
+
+gem "aws-sdk-s3", require: false
