@@ -11,7 +11,10 @@ ActiveAdmin.register Author do
     column "Profile" do |author|
       image_tag author.profile_url, class: 'my_image_size'
     end
-    column :name
+    column "Name" do |author|
+      link_to author.name, admin_author_path(author.id)
+    end
+    
     column :email
     column :phone
     column :address
@@ -30,6 +33,40 @@ ActiveAdmin.register Author do
       row :updated_at
       row :image do |author|
         image_tag author.profile_url, class: 'my_image_lg_size'
+      end
+    end
+
+    panel "Author's Books" do
+      table_for author.books do
+        
+        column "Id" do |book|
+          link_to book.id, admin_book_path(book.id)
+        end
+      
+        column "Cover Photo" do |book|
+          if !book.cover_photo_url.nil?
+            image_tag book.cover_photo_url, class: 'my_image_size'
+          end
+        end
+       
+
+        column "Title" do |book|
+          link_to book.title, admin_book_path(book.id)
+        end
+      
+        column :Description do |book|
+          book.description.body
+        end
+
+        column "PDF File" do |book| 
+          if !book.pdf_file_url.nil?
+            link_to "Download", book.pdf_file_url 
+          end
+        end
+
+        column :created_at
+        column :updated_at
+        
       end
     end
     active_admin_comments

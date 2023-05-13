@@ -1,0 +1,86 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Book Publication Notice</title>
+  <style>
+    /* Add styles for the email */
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    h2 {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    p {
+      margin-bottom: 10px;
+    }
+    .cta-btn {
+      display: block;
+      background-color: #007bff;
+      color: #fff;
+      text-align: center;
+      padding: 10px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      margin: 20px auto;
+      width: 200px;
+      font-weight: bold;
+    }
+    .cta-btn:hover {
+      background-color: #0056b3;
+    }
+    .img-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>New Book Publication Notice</h1>
+    <div class="img-container">
+      <%= image_tag attachments['cover_photo.jpg'].url, width: 200, height: 200 %>
+    </div>
+    <h2>Title: <%= @book.title %></h2>
+    <p>Authors: <%= @book.get_authors %></p>
+    <p>Categories: <%= @book.get_categories %></p>
+    <p>Publication Date: <%= @book.published_date %></p>
+    <hr style="border:none;border-top:1px solid #eee"/>
+    <p>Description : <%= @book.description.body %></p>
+    <hr style="border:none;border-top:1px solid #eee"/>
+    <%= link_to "Download Now", attachments['book_file.pdf'].url, download: "book_file.pdf", class: "cta-btn" %>
+    <p style="font-size:0.9em;">
+      Regards, BSMP Application
+    </p>
+    <hr style="border:none;border-top:1px solid #eee"/>
+    <div style="float:right;padding:8px 0;color:#aaa;font-size:0.8em;line-height:1;font-weight:300">
+      <p>BSMP Application</p>
+    </div>
+  </div>
+</body>
+</html>
