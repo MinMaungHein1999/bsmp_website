@@ -21,21 +21,27 @@ ActiveAdmin.register Book do
     end
 
     column "Category" do |book|
-      book.categories
+      content_tag :ol, class: 'orders-list' do
+        book.categories.each do |category|
+          concat content_tag(:li, link_to(category.name, admin_category_path(category.id)),class: "order-item")
+        end
+      end
     end
 
     column "Authors" do |book|
-      book.authors
+      content_tag :ol, class: 'orders-list' do
+        book.authors.each do |author|
+          concat content_tag(:li, link_to(author.name, admin_author_path(author.id)),class: "order-item")
+        end
+      end
     end
   
-    column :Description do |book|
-      book.description.body
-    end
     column :created_at
     column :updated_at
-    column "PDF File" do |book| 
+
+    column "PDF File", class: "pdf-file" do |book|
       if !book.pdf_file_url.nil?
-        link_to "Download", book.pdf_file_url 
+        link_to "Download", book.pdf_file_url, class: "download-link"
       end
     end
 
@@ -46,30 +52,53 @@ ActiveAdmin.register Book do
     end
   end
 
-  
-
-
-
   show do
     attributes_table do
       
       row :title
       row :published_date
-      row :Description do |book|
-        book.description.body
+
+      row :status do |book|
+        if book.published_date.nil?
+          link_to("Publish", run_admin_book_path(book), class: "publish-button")
+        else
+           "This book is published !!!"
+        end
       end
+
+      row :categories do |book|
+        content_tag :ol, class: 'orders-list' do
+          book.categories.each do |category|
+            concat content_tag(:li, link_to(category.name, admin_category_path(category.id)),class: "order-item")
+          end
+        end
+      end
+  
+      row :authors do |book|
+        content_tag :ol, class: 'orders-list' do
+          book.authors.each do |author|
+            concat content_tag(:li, link_to(author.name, admin_author_path(author.id)),class: "order-item")
+          end
+        end
+      end
+    
       row :created_at
       row :updated_at
 
-      row :pdf_file do |book| 
+      row :pdf_file do |book|
         if !book.pdf_file_url.nil?
-          link_to "Download", book.pdf_file_url 
+          link_to "Download Now !!!", book.pdf_file_url, class: "download-btn"
         end
       end
 
       row :cover_photo do |book|
         image_tag book.cover_photo_url, class: 'my_image_lg_size'
       end
+
+      row :Description do |book|
+        book.description.body
+      end
+
     end
     active_admin_comments
   end

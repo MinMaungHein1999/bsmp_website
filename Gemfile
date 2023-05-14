@@ -6,6 +6,8 @@ ruby "3.0.0"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4", ">= 7.0.4.3"
 
+
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
@@ -102,3 +104,17 @@ gem 'sassc'
 gem 'active_admin_flat_skin'
 
 gem 'font-awesome-rails'
+
+gem 'swagger-ui_rails'
+
+gem 'swagger_ui_engine', '~> 0.0.5'
+
+
+gem 'rack-cors'
+
+gem 'active_model_serializers'
+
+
+
+
+

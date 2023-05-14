@@ -27,6 +27,30 @@
   height: 100px;
 }
 
+ol.orders-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 5px;
+}
+
+li.order-item {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+li.order-item h4 {
+  margin-top: 0;
+}
+
+li.order-item p {
+  margin-bottom: 0;
+}
+
+
+
+
 .my_image_lg_size {
   width: 200px;
   height: 200px;
@@ -47,3 +71,82 @@ a.unpublish_button {
   padding: 5px 10px;
   border-radius: 5px;
 }
+
+
+td.pdf-file {
+  position: relative;
+}
+
+td.pdf-file .download-link {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+td.pdf-file .download-link:hover {
+  background-color: #0062cc;
+}
+
+td.pdf-file .download-link::after {
+  content: "\2193";
+  margin-left: 5px;
+  font-size: 12px;
+}
+
+td.pdf-file .download-link::before {
+  content: "\1F4E5";
+  margin-right: 5px;
+  font-size: 16px;
+}
+
+td.pdf-file .download-link::before,
+td.pdf-file .download-link::after {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+td.pdf-file .download-link:hover::after,
+td.pdf-file .download-link:hover::before {
+  color: #fff;
+}
+
+
+.download-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.download-btn:hover {
+  background-color: #2980b9;
+}
+
+
+
+.publish-button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.publish-button:hover {
+  background-color: #3e8e41; /* Dark green */
+}
+
+

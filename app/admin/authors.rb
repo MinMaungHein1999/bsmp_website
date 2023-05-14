@@ -8,16 +8,25 @@ ActiveAdmin.register Author do
   index do
     selectable_column
     id_column
+    
     column "Profile" do |author|
       image_tag author.profile_url, class: 'my_image_size'
     end
+
     column "Name" do |author|
       link_to author.name, admin_author_path(author.id)
     end
 
-    column "Books" do |author|
-      author.books
+
+    column "Author's Books" do |author|
+      content_tag :ol, class: 'orders-list' do
+        author.books.each do |book|
+          concat content_tag(:li, link_to(book.title, admin_book_path(book.id)),class: "order-item")
+        end
+      end
     end
+
+    
     
     column :email
     column :phone
