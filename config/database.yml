@@ -8,14 +8,14 @@ default: &default
 development:
   <<: *default
   database: <%= Rails.application.credentials.DB_NAME.dev_db %>
-  # username: <%= Rails.application.credentials.DB_USERNAME.dev_db %>
-  # password: <%= Rails.application.credentials.DB_PASSWORD.dev_db %>
+  username: <%= Rails.application.credentials.DB_USERNAME.dev_db %>
+  password: <%= Rails.application.credentials.DB_PASSWORD.dev_db %>
 
 test:
   <<: *default
   database: <%= Rails.application.credentials.DB_NAME.test_db %>
-  # username: <%= Rails.application.credentials.DB_USERNAME.test_db %>
-  # password: <%= Rails.application.credentials.DB_PASSWORD.test_db %>
+  username: <%= Rails.application.credentials.DB_USERNAME.test_db %>
+  password: <%= Rails.application.credentials.DB_PASSWORD.test_db %>
 
 production:
   <<: *default
