@@ -105,13 +105,6 @@ gem 'active_admin_flat_skin'
 
 gem 'font-awesome-rails'
 
-gem 'swagger-ui_rails'
-
-gem 'swagger_ui_engine', '~> 0.0.5'
-
-
-gem 'rack-cors'
-
 gem 'active_model_serializers'
 
 
