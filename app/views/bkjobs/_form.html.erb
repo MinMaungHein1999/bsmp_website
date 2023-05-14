@@ -1,0 +1,17 @@
+<%= form_with(model: bkjob) do |form| %>
+  <% if bkjob.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(bkjob.errors.count, "error") %> prohibited this bkjob from being saved:</h2>
+
+      <ul>
+        <% bkjob.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

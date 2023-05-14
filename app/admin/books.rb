@@ -1,5 +1,18 @@
 
 ActiveAdmin.register Book do
+
+  action_item :cancel_new_book_emails, only: :show do
+    link_to 'Cancel Sending Emails', cancel_new_book_emails_admin_book_path(book), method: :put
+  end
+
+  member_action :cancel_new_book_emails, method: :put do
+    book = Book.find(params[:id])
+    book.published_date = nil
+    book.save
+    Sidekiq::Queue.new.clear 
+    Sidekiq::ScheduledSet.new.clear 
+    redirect_to admin_book_path(book), notice: 'New book emails have been cancelled.'
+  end
   
   permit_params do
     permitted = [:title, :cover_photo, :pdf_file, :description, author_ids: [], category_ids: []]
@@ -100,6 +113,7 @@ ActiveAdmin.register Book do
       end
 
     end
+
     active_admin_comments
   end
 

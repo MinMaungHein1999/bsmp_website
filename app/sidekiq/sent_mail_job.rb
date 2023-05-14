@@ -4,6 +4,7 @@ class SentMailJob < ApplicationJob
   def perform(book_id, subscriber_id)
     book = Book.find(book_id)
     subscriber = Subscriber.find(subscriber_id)
-    BookMailer.book_information_email(book, subscriber).deliver_now
+    BookMailer.book_information_email(book, subscriber).deliver_later
+    sleep(60)
   end
 end

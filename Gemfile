@@ -107,6 +107,11 @@ gem 'font-awesome-rails'
 
 gem 'active_model_serializers'
 
+gem 'ransack', '~> 2.4'
+
+
+
+
 
 
 
